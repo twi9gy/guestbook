@@ -15,24 +15,31 @@ class ConferenceController extends AbstractController
 {
     private $twig;
 
-    public function __construct(Environment $twig)
+    /**
+     * @var ConferenceRepository
+     */
+    private $conferenceRepository;
+
+
+    public function __construct(Environment $twig, ConferenceRepository $conferenceRepository)
     {
         $this->twig = $twig;
+        $this->conferenceRepository = $conferenceRepository;
     }
 
     /**
      * @Route("/", name="homepage")
      */
-    public function index(ConferenceRepository $conferenceRepository): Response
+    public function index(): Response
     {
         return new Response($this->twig->render('conference/index.html.twig', [
-            'conferences' => $conferenceRepository->findAll(),
+            'conferences' => $this->conferenceRepository->findAll(),
         ]));
     }
 
 
     /**
-     * @Route("/conference/{id}", name="conference")
+     * @Route("/conference/{slug}", name="conference")
      */
     public function show(Request $request, Conference $conference, CommentRepository $commentRepository): Response
     {
@@ -41,6 +48,7 @@ class ConferenceController extends AbstractController
 
 
         return new Response($this->twig->render('conference/show.html.twig', [
+            'conferences' => $this->conferenceRepository->findAll(),
             'conference' => $conference,
             'comments' => $paginator,
             'previous' => $offset - CommentRepository::PAGINATOR_PER_PAGE,

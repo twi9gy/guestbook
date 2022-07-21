@@ -129,4 +129,12 @@ class Comment
     {
         return (string) $this->getEmail();
     }
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function setCreatedValue(): void
+    {
+        $this->createdAt = new \DateTimeImmutable();
+    }
 }
