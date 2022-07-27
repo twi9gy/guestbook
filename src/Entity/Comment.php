@@ -54,6 +54,11 @@ class Comment
      */
     private $photoFilename;
 
+    /**
+     * @ORM\Column(type="string", length=255, options={"default"="submitted"})
+     */
+    private $state = 'submitted';
+
     public function getId(): ?int
     {
         return $this->id;
@@ -142,5 +147,17 @@ class Comment
     public function setCreatedValue(): void
     {
         $this->createdAt = new \DateTimeImmutable();
+    }
+
+    public function getState(): ?string
+    {
+        return $this->state;
+    }
+
+    public function setState(string $state): self
+    {
+        $this->state = $state;
+
+        return $this;
     }
 }
