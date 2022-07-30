@@ -8,4 +8,5 @@ tests:
 	symfony php bin/phpunit tests/Controller/ConferenceControllerTest.php
 	symfony php bin/phpunit tests/Controller/CommentControllerTest.php
 	symfony php bin/phpunit tests/SpamCheckerTest.php
+	symfony php bin/phpunit tests/MailerTest.php
 .PHONY: tests
