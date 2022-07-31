@@ -2,6 +2,7 @@
 
 namespace App\MessageHandler;
 
+use App\ImageOptimizer;
 use App\Message\CommentMessage;
 use App\Repository\CommentRepository;
 use App\SpamChecker;
