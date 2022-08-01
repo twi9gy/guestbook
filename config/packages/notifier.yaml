@@ -8,9 +8,11 @@ framework:
         #    nexmo: '%env(NEXMO_DSN)%'
         channel_policy:
             # use chat/slack, chat/telegram, sms/twilio or sms/nexmo
-            urgent: ['email']
-            high: ['email']
-            medium: ['email']
-            low: ['email']
+            urgent: ['chat/telegram', 'email']
+            high: ['chat/telegram', 'email']
+            medium: ['chat/telegram', 'email']
+            low: ['chat/telegram', 'email']
         admin_recipients:
-            - { email: admin@example.com }
+            - { email: "%env(string:default:default_admin_email:ADMIN_EMAIL)%" }
+        chatter_transports:
+            telegram: '%env(TELEGRAM_DSN)%'
