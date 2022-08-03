@@ -8,10 +8,10 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class CommentControllerTest extends WebTestCase
 {
-    public function testSomething(): void
+    public function testCommentSubmission(): void
     {
         $client = static::createClient();
-        $client->request('GET', '/conference/amsterdam-2019');
+        $client->request('GET', '/en/conference/amsterdam-2019');
 
         $client->submitForm('Submit', [
             'comment_form[author]' => 'Fabien',
